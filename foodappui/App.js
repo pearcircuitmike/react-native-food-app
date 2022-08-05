@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+//import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,10 +26,14 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 
 import colors from './assets/colors/colors';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+Icon.loadFont();
 
 const Section = ({children, title}): Node => {
   return (
     <View style={styles.sectionContainer}>
+      <Icon name="ios-person" size={30} color="#4F8EF7" />
       <Text style={styles.sectionTitle}>{title}</Text>
       <Text style={styles.sectionDescription}>{children}</Text>
     </View>
