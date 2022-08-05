@@ -14,7 +14,6 @@ import {
   StatusBar,
   StyleSheet,
   Text,
-  useColorScheme,
   View,
 } from 'react-native';
 
@@ -26,50 +25,24 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import colors from './assets/colors/colors';
+
 const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+      <Text style={styles.sectionTitle}>{title}</Text>
+      <Text style={styles.sectionDescription}>{children}</Text>
     </View>
   );
 };
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
+    <SafeAreaView>
+      <StatusBar barStyle={'light-content'} />
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+        <View>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.js</Text> to change this
             screen and then come back to see your edits.
@@ -98,12 +71,14 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: '600',
+    color: colors.primary,
     fontFamily: 'Montserrat-Regular',
   },
   sectionDescription: {
     marginTop: 8,
     fontSize: 18,
     fontWeight: '400',
+    color: colors.secondary,
   },
   highlight: {
     fontWeight: '700',
